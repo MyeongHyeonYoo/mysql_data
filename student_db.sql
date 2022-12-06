@@ -1,25 +1,31 @@
 CREATE SCHEMA student_db;
-CREATE TABLE `student_db`.`score` (
-  `student_id` INT UNSIGNED NOT NULL,
+
+-- USE student_db;
+CREATE TABLE student_db.score (
+  `student_id` INT(10) NOT NULL AUTO_INCREMENT,
   `student_name` CHAR(4) NOT NULL,
   `korean_language` TINYINT(3) UNSIGNED NOT NULL,
   `english` TINYINT(3) UNSIGNED NOT NULL,
   `maths` TINYINT(3) UNSIGNED NOT NULL,
-  
-  PRIMARY KEY (`student_id`));
+  `total_score` CHAR(3) NULL,
+  `average` CHAR(3) NULL,
+  `grade` CHAR(1) GENERATED ALWAYS AS (NULL) VIRTUAL,
+PRIMARY KEY(student_id));
+-- ALTER TABLE student_db.score AUTO_INCREMENT=1;
 
-INSERT INTO student_db.score values (1, '일번', 90, 50, 45);
-INSERT INTO student_db.score values (2, '이번', 80, 50, 35);
-INSERT INTO student_db.score values (3, '삼번', 40, 60, 30);
-INSERT INTO student_db.score values (4, '사번', 90, 50, 70);
-INSERT INTO student_db.score values (5, '오번', 75, 50, 55);
+INSERT INTO student_db.score (student_name, korean_language, english, maths) VALUES ('일번', '95', '79', '88');
+INSERT INTO student_db.score (student_name, korean_language, english, maths) VALUES ('이번', '74', '34', '55');
+INSERT INTO student_db.score (student_name, korean_language, english, maths) VALUES ('삼번', '25', '15', '70');
+INSERT INTO student_db.score (student_name, korean_language, english, maths) VALUES ('사번', '65', '49', '98');
+INSERT INTO student_db.score (student_name, korean_language, english, maths) VALUES ('오번', '33', '25', '33');
 
 
-COMMIT;
+show SCHEMAS;
+show DATABASES;
 
 SELECT * FROM student_db.score;
 
-show SCHEMAS;
-show DATABASES; 
-
 DROP SCHEMA student_db;
+DELETE FROM student_db.score WHERE student_id = 1;
+
+COMMIT;
